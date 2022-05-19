@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   return (
     <Flex
       bg="white"
-      height="44px"
+      height="46px"
       padding="6px 12px"
       marginBottom="4px"
       align="center"
