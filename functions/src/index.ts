@@ -8,7 +8,7 @@ export const createUserDoc = functions.auth.user().onCreate(async (user) => {
   const newUser = {
     uid: user.uid,
     email: user.email,
-    providerData: user.providerData,
+    photoURL: user.providerData[0].photoURL,
     displayName: user.displayName,
   };
 
