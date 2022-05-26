@@ -24,25 +24,6 @@ const useCommunityData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const onJoinOrLeaveCommunity = (
-    communityData: Community,
-    isJoined: boolean
-  ) => {
-    // if no usere... open login modal
-    if (!user) {
-      setAuthModalState({ open: true, view: "login" });
-      return;
-    }
-
-    //  is the user signed in
-
-    if (isJoined) {
-      leaveCommunity(communityData.id);
-      return;
-    }
-    joinCommunity(communityData);
-  };
-
   const getMySnippets = async () => {
     setLoading(true);
 
@@ -69,6 +50,24 @@ const useCommunityData = () => {
     if (!user) return;
     getMySnippets();
   }, [user]);
+
+  const onJoinOrLeaveCommunity = (
+    communityData: Community,
+    isJoined: boolean
+  ) => {
+    // if no usere... open login modal
+    if (!user) {
+      setAuthModalState({ open: true, view: "login" });
+      return;
+    }
+
+    //  is the user signed in
+    if (isJoined) {
+      leaveCommunity(communityData.id);
+      return;
+    }
+    joinCommunity(communityData);
+  };
 
   const joinCommunity = async (communityData: Community) => {
     const snippetRef = doc(
