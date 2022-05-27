@@ -8,6 +8,7 @@ import NoCommunity from "../../../components/Community/NoCommunity";
 import Header from "../../../components/Community/Header";
 import PageContent from "../../../components/PageContent";
 import CreatePostLink from "../../../components/Community/CreatePostLink";
+import Posts from "../../../components/Posts/Posts";
 
 type CommunityPageProps = {
   community: Community;
@@ -22,6 +23,7 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ community }) => {
       <PageContent>
         {/* child 1 */}
         <CreatePostLink />
+        <Posts communityData={community} />
         {/* child 2 */}
         <>RHS</>
       </PageContent>
