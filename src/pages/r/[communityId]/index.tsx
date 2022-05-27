@@ -1,20 +1,33 @@
 import { doc, getDoc } from "firebase/firestore";
 import { GetServerSidePropsContext } from "next";
-import React from "react";
+import React, { useEffect } from "react";
 import { firestore } from "../../../firebase/clientApp";
-import { Community } from "../../../atoms/communitiesAtom";
+import { Community, communityState } from "../../../atoms/communitiesAtom";
 import safejsonStringfy from "safe-json-stringify";
 import NoCommunity from "../../../components/Community/NoCommunity";
 import Header from "../../../components/Community/Header";
 import PageContent from "../../../components/PageContent";
 import CreatePostLink from "../../../components/Community/CreatePostLink";
 import Posts from "../../../components/Posts/Posts";
+import { useSetRecoilState } from "recoil";
+import About from "../../../components/Community/About";
 
 type CommunityPageProps = {
   community: Community;
 };
 
 const CommunityPage: React.FC<CommunityPageProps> = ({ community }) => {
+  const setCurrentCommunity = useSetRecoilState(communityState);
+
+  useEffect(() => {
+    if (community) {
+      setCurrentCommunity((prev) => ({
+        ...prev,
+        currentCommunity: community,
+      }));
+    }
+  }, []);
+
   if (!community) return <NoCommunity />;
 
   return (
@@ -26,9 +39,10 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ community }) => {
           <CreatePostLink />
           <Posts communityData={community} />
         </>
-
         {/* child 2 */}
-        <>RHS</>
+        <>
+          <About community={community} />
+        </>
       </PageContent>
     </>
   );
