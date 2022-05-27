@@ -22,8 +22,11 @@ const CommunityPage: React.FC<CommunityPageProps> = ({ community }) => {
       <Header community={community} />
       <PageContent>
         {/* child 1 */}
-        <CreatePostLink />
-        <Posts communityData={community} />
+        <>
+          <CreatePostLink />
+          <Posts communityData={community} />
+        </>
+
         {/* child 2 */}
         <>RHS</>
       </PageContent>

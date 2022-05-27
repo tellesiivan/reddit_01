@@ -116,14 +116,13 @@ const NewPostForm: React.FC<NewPostsFormProps> = ({ user }) => {
           imageURL: downloadedUrl,
         });
       }
+      // redirect user to community page
+      router.back();
     } catch (error: any) {
       setError(true);
       console.log("handleCreatePost", error.message);
     }
     setLoading(false);
-
-    // redirect user to community page
-    // router.replace(`/r/${communityId}`);
   };
 
   return (
