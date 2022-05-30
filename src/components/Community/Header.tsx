@@ -24,8 +24,13 @@ const Header: React.FC<HeaderProps> = ({ community }) => {
             <Image
               src={communityStateValue.currentCommunity.imageURL}
               borderRadius="full"
-              boxSize="40px"
+              boxSize="80px"
+              objectFit="fill"
+              position="relative"
+              top="-6"
               alt="community image"
+              border="4px solid"
+              borderColor="white"
             />
           ) : (
             <Icon
